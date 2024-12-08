@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+
+  cloudBeaver:
+    image: dbeaver/cloudbeaver
+    ports:
+      - "5050:8978"
+    volumes:
+      - ./cloudbeaver_data:/opt/cloudbeaver/workspace 
+volumes:
+  postgres_data:
+  mariadb_data:
+  cloudbeaver_data:
